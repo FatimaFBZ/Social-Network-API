@@ -15,42 +15,26 @@ connection.once('open', async () => {
   
   //add thought to the collection
   
-  const thoughts = await Thought.collection.insertMany(
-   [
+  const thought = await Thought.collection.insertOne(
+   
     {
         thoughtText: 'I want to swim with the dolphins',
-        username: 'Yasmin',
         createdAt: Date.now,
+        username: "Yasmin",
         reactions:[]
-    },
-    {
-    
-        thoughtText: 'I want to go to Hawaii',
-        username: 'Naseema',
-        createdAt: Date.now,
-        reactions:[]
-    }
-  ]
-);
+    });
+ 
 
 //users
-const users = await User.collection.insertMany(
-  [
+const user = await User.collection.insertOne(
+  
   {
     username: 'Yasmin',
     email: 'yasmin@hotmail.com',
     thoughts:[],
     friends:[]
 
-  },
-  {
-    username: 'Naseema',
-    email: 'Naseema@hotmail.com',
-    thoughts:[],
-    friends:[]
-  }
-  ]
-)
+  })
 
  
 
@@ -58,8 +42,9 @@ const users = await User.collection.insertMany(
   
 
   // Log out the seed data to indicate what should appear in the database
-  console.table(thoughts);
-  console.table(users);
+  console.table(thought._id);
+  console.table(user);
+  console.log('seeded')
   process.exit(0);
 
 })
